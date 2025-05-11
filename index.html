@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mother's Day Envelope</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Static Title */
+    .title {
+      font-size: 2.5rem;
+      color: #d6336c;
+      max-width: 30%;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .static-title {
+      font-size: 2.5rem;
+      color: #d6336c;
+    }
+
+    .heart-icon {
+      font-size: 2.5rem;
+      /* animation: pulse 1.5s infinite; */ /* Disabled animation */
+    }
+
+    /* Envelope */
+    .envelope {
+      position: relative;
+      width: 400px;
+      height: 270px;
+      background: #ff85a2;
+      border: 4px solid #ff4d79;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: #ff6699;
+      transform-origin: top;
+      transition: transform 1s;
+      z-index: 2;
+    }
+
+    .letter {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 380px;
+      height: 250px;
+      background: white;
+      padding: 15px;
+      text-align: center;
+      opacity: 0;
+      z-index: 0;
+      overflow-y: auto;
+      transition: opacity 1s;
+      border-radius: 8px;
+    }
+
+    .letter img {
+      width: 120px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .letter p {
+      font-size: 15px;
+      color: #d6336c;
+      line-height: 1.4;
+    }
+
+    .envelope.open .flap {
+      transform: rotateX(-180deg);
+    }
+
+    .envelope.open .letter {
+      opacity: 1;
+    }
+
+    /* Heart button */
+    .heart-button {
+      position: absolute;
+      bottom: 20px;
+      background: #ff3366;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 3;
+      animation: pulse 2s infinite;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .heart-button::before {
+      content: "♥";
+      font-size: 18px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    /* Floating hearts */
+    .hearts-container {
+      position: relative;
+      width: 100px;
+      height: 300px;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      color: red;
+      animation: floatUp 4s infinite ease-in-out;
+      opacity: 0;
+    }
+
+    .heart:nth-child(1) { left: 10px; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 30px; animation-delay: 1s; }
+    .heart:nth-child(3) { left: 50px; animation-delay: 2s; }
+    .heart:nth-child(4) { left: 20px; animation-delay: 1.5s; }
+    .heart:nth-child(5) { left: 60px; animation-delay: 2.5s; }
+
+    @keyframes floatUp {
+      0% { bottom: 0; opacity: 0; transform: translateY(0) scale(1); }
+      30% { opacity: 1; }
+      100% { bottom: 100%; opacity: 0; transform: translateY(-100px) scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Side: Static Title -->
+  <div class="title">
+    <div class="heart-icon">♥</div>
+    <div class="static-title">Happy <br><br>Mother's Day</div>
+  </div>
+
+  <!-- Center: Envelope -->
+  <div class="envelope" onclick="openEnvelope(this)">
+    <div class="flap"></div>
+    <div class="letter">
+      <img src="mom.jpg" alt="My Mom">
+      <p>
+        <strong>To the Best Mom in the World,</strong><br><br>
+        Happy Mother's Day, Mama!<br><br>
+        Words could never express how special you are. You are my hero, and my biggest blessing. Thank you for your love, strength, and for always being there for me.<br><br>
+        I love you more than words can say.<br><br>
+        <em>Forever your child.</em>
+      </p>
+    </div>
+    <button class="heart-button">Tap to Open</button>
+  </div>
+
+  <!-- Right: Floating Hearts -->
+  <div class="hearts-container">
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function openEnvelope(el) {
+      el.classList.toggle("open");
+      el.querySelector('.heart-button').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

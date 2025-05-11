@@ -1,0 +1,81 @@
+body {
+  background: #ffe6f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.envelope {
+  width: 300px;
+  height: 200px;
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background: #ff6699;
+  transform-origin: top;
+  transition: transform 1s;
+  z-index: 2;
+}
+
+.body {
+  width: 100%;
+  height: 100%;
+  background: #ff85a2;
+  position: absolute;
+  z-index: 1;
+}
+
+.letter {
+  position: absolute;
+  top: 10%;
+  width: 90%;
+  height: 80%;
+  background: white;
+  padding: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s;
+  z-index: 0;
+}
+
+.letter img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.letter p {
+  font-size: 1rem;
+  color: #d6336c;
+}
+
+.hearts span {
+  display: inline-block;
+  color: red;
+  font-size: 24px;
+  animation: float 2s infinite;
+  margin: 0 5px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Open state */
+.envelope.open .flap {
+  transform: rotateX(-180deg);
+}
+
+.envelope.open .letter {
+  opacity: 1;
+}
